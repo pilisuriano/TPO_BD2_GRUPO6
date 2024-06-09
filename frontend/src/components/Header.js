@@ -113,7 +113,7 @@ const Header = () => {
                             </div>
                             <Link to="/cart">
                                 <i className="fas fa-shopping-bag" style={{ marginLeft: '10px' }}></i>
-                                <span className="badge">4</span>
+                                <span className="badge" style={{ color: 'black', fontSize: '14px', position: 'absolute', top: '70px', right: '112px' }}>4</span>
                             </Link>
                         </div>
                     </div>
