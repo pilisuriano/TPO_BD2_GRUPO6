@@ -21,4 +21,4 @@ const CalltoActionSection = () => {
     );
 };
 
-export default calltoActionSection;
+export default CalltoActionSection;

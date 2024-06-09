@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import "./responsive.css"
 import "react-toastify/dist/ReactToastify.css";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import SingleProduct from "./screens/SingleProduct";
 import Login from "./screens/Login";
@@ -18,19 +18,19 @@ import NotFound from "./screens/NotFound";
 const App = () => {
     return (
         <Router>
-            <Switch>
-                <Route path="/" component={HomeScreen} exact />
-                <Route path="/products/:id" component={SingleProduct} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-                <Route path="/cart/:id?" component={CartScreen} />
-                <Route path="/shipping" component={ShippingScreen} />
-                <Route path="/profile" component={ProfileScreen} />
-                <Route path="/payment" component={PaymentScreen} />
-                <Route path="/placeorder" component={PlaceOrderScreen} />
-                <Route path="/order" component={OrderScreen} />
-                <Route path="*" component={NotFound} />
-            </Switch>
+            <Routes>
+                <Route path="/" element={<HomeScreen />} exact />
+                <Route path="/products/:id" element={<SingleProduct />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/cart/:id?" element={<CartScreen />} />
+                <Route path="/shipping" element={<ShippingScreen />} />
+                <Route path="/profile" element={<ProfileScreen />} />
+                <Route path="/payment" element={<PaymentScreen />} />
+                <Route path="/placeorder" element={<PlaceOrderScreen />} />
+                <Route path="/order" element={<OrderScreen />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
         </Router>
     );
 };

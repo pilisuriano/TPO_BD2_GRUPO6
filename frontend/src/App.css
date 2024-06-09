@@ -55,6 +55,8 @@ textarea:focus{
 }
 /*Header*/
 .header {
+    display: flex;
+    justify-content: space-between;
     padding: 10px 0px 10px 0px;
 }
 .navbar-brand img{
@@ -62,7 +64,7 @@ textarea:focus{
 }
 .input-group{
     height: 50px;
-    width: 90%;
+    width: 70%;
 }
 .search-button {
     width: 20%;
@@ -71,6 +73,7 @@ textarea:focus{
     border: 0;
     text-transform: uppercase;
     font: 12px;
+    margin-right: 10px;
 }
 .dropdown-menu a:hover {
     background-color: #1cb803 !important;
@@ -78,6 +81,10 @@ textarea:focus{
 }
 .mobile-header {
     display: none;
+}
+.pc-header {
+    display: flex;
+    align-items: center;
 }
 
 /* SHOP */
