@@ -2,35 +2,30 @@ import React from "react";
 
 const ContactInfo = () => {
     return (
-        <div className="contactInfo container">
+        <div className="contactInfo container" style={{marginTop:'-100px'}}>
             <div className="row">
-                <div className="col-12 col-md-4 contact-Box">
+                <div className="col-12 contact-Box">
                     <div className="info-image">
-                        <i className="fas fa-phone-alt"></i>
+                        <i className="fas fa-phone-alt" style={{marginLeft: '13px',marginTop:'10px'}}></i>
                     </div>
-                    <h5>Llamanos abiertos las 24hs</h5>
-                    <p>011 4785 2541</p>
+                    <h5 style={{marginLeft: '10px'}}>¡Llamanos! Abiertos las 24hs: </h5>
+                    <div style={{marginLeft: '10px'}}>
+                        <p >011 4785 2541</p>
+                    </div>
                 </div>
             </div>
-            <div className="col-12 col-md-4 contact-Box">
-                <div className="box-info">
+            <div className="row">
+                <div className="col-12 contact-Box">
                     <div className="info-image">
-                        <i className="fas fa-map-market-alt"></i>
+                        <i className="fas fa-map-marker-alt" style={{marginLeft: '15px',marginTop:'11px'}}></i>
                     </div>
-                    <h5>Oficinas</h5>
-                    <p>Buenos Aires, Argentina</p>
+                    <h5 style={{marginLeft: '10px'}}>Oficinas en: </h5>
+                    <div style={{marginLeft: '10px'}}>
+                        <p >Buenos Aires, Argentina</p>
+                    </div>
                 </div>
-            </div>
-            <div className="col-12 col-md-4 contact-Box">
-                <div className="box info">
-                    <div className="info-image">
-                        <i className="fas fa-fax"></i>
-                </div>
-                <hd>Fax</hd>
-                <p>125478 6985 7458</p>
             </div>
         </div>
-    </div>
     );
 };
 

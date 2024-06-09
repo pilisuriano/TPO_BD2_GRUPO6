@@ -382,7 +382,7 @@ textarea:focus{
     background-color: #ececec;
 }
 .card-name{
-    width:100%;
+    width:5%;
     height: 50px;
     object-fit: contain;
 }

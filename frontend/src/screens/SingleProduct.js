@@ -4,9 +4,11 @@ import Header from "./../components/Header";
 import Rating from "./../components/homeComponents/Rating";
 import Message from "./../components/LoadingError/Error";
 import products from "./../data/Products";
+import { useParams } from "react-router-dom";
 
-const SingleProduct = ({ match }) => {
-    const product= products.find((p) => p._id === match.params.id);
+const SingleProduct = () => {
+    let { id } = useParams();
+    const product= products.find((p) => p._id === id);
     return (
         <>
             <Header />
@@ -78,7 +80,6 @@ const SingleProduct = ({ match }) => {
                     <div className="col-md-6">
                         <h6>Escribí una reseña</h6>
                         <div className="my-4"></div>
-
                         <form>
                             <div className="my-4">
                                 <strong>Calificación</strong>
@@ -99,7 +100,7 @@ const SingleProduct = ({ match }) => {
                                 ></textarea>
                             </div>
                             <div className="my-3">
-                                <button className="col-12 bg-black border-0 p-3 rounded text white">Enviar</button>
+                                <button className="col-12 bg-black border-0 p-3 rounded text-white">Enviar</button>
                             </div>
                         </form>
                         <div className="my-3">

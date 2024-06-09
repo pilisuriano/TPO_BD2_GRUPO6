@@ -6,26 +6,30 @@ const Footer = () => {
             <div className="justify-content-center d-flex">
                 <div className="card-name">
                     <img
+                        style={{width: '50px', height: '50px'}}
                         alt="mastercard"
-                        src="https://res.cloudinary.com/dkzwt9sfa/image/upload/v1630566824/ecommerce/mastercard_1_jzqz9v.png"
+                        src="https://www.mastercard.com/content/dam/public/mastercardcom/ar/es/logos/mastercard-og-image.png"
                     />
                 </div>
                 <div className="card-name">
                     <img
+                        style={{width: '50px', height: '50px'}}
                         alt="visa"
-                        src="https://res.cloudinary.com/dkzwt9sfa/image/upload/v1630566824/ecommerce/visa_1_c7zv8o.png"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw7UTSpkflEUsSENfxmTqxeGzCgzNxWOhINA&s"
                     />
                 </div>
                 <div className="card-name">
                     <img
+                        style={{width: '60px', height: '50px'}}
                         alt="american express"
-                        src="https://res.cloudinary.com/dkzwt9sfa/image/upload/v1630566824/ecommerce/american-express_1_h5x4xh.png"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4H5wB7Osnm_7IDfCwUXaiSKLpZe8AEV8iuA&s"
                     />
                 </div>
                 <div className="card-name">
                     <img
+                        style={{width: '60px', height: '50px'}}
                         alt="paypal"
-                        src="https://res.cloudinary.com/dkzwt9sfa/image/upload/v1630566824/ecommerce/paypal_1_zg3v3z.png"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrY_-nVZTe75H_73gtzXpBmVb6P1ey1M26Sw&s"
                     />
                 </div>
             </div>

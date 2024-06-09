@@ -2,7 +2,7 @@ const products = [
     {
         _id: "1",
         name: "Nike Slim Shirt",
-        image: "/images/p1.jpg",
+        image: "/images/p1.png",
         description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
         price: 120,
@@ -13,7 +13,7 @@ const products = [
     {
         _id: "2",
         name: "Adidas Fit Shirt",
-        image: "/images/p2.jpg",
+        image: "/images/p2.png",
         description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
         price: 100,
@@ -24,7 +24,7 @@ const products = [
     {
         _id: "3",
         name: "Lacoste Free Shirt",
-        image: "/images/p3.jpg",
+        image: "/images/p3.png",
         description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
         price: 220,
@@ -35,7 +35,7 @@ const products = [
     {
         _id: "4",
         name: "Nike Slim Pant",
-        image: "/images/p4.jpg",
+        image: "/images/p4.png",
         description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
         price: 78,
