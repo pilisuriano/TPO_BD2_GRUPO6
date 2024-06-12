@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState} from "react";
+import { Link, useParams} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import Header from "./../components/Header";
 import Rating from "./../components/homeComponents/Rating";
 import Message from "./../components/LoadingError/Error.js";
@@ -7,10 +8,13 @@ import axios from "axios";
 import { listProductDetails } from "../Redux/Actions/ProductActions";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./../components/LoadingError/Loading.js";
+import { addToCart } from "../Redux/Actions/CartActions";
 
 const SingleProduct = () => {
+    const navigate = useNavigate();
     const { id: productId } = useParams();
     const dispatch = useDispatch();
+    const[qty, setQty] = useState(1);
 
     const productDetails = useSelector((state) => state.productDetails);
     const{loading,error,product} = productDetails;
@@ -19,6 +23,11 @@ const SingleProduct = () => {
         dispatch(listProductDetails(productId));
     }, [dispatch, productId]);
 
+    const AddToCartHandler = (e) => {
+        e.preventDefault();
+        dispatch(addToCart(productId, qty));
+        navigate(`/cart/${productId}?qty=${qty}`);
+    }
 
     return (
         <>
@@ -62,7 +71,7 @@ const SingleProduct = () => {
                                                 <>
                                                     <div className="flex-box d-flex justify-content-between align-items-center">
                                                         <h6>Cantidad</h6>
-                                                        <select>
+                                                        <select value={qty} onChange={(e) => setQty(e.target.value)}>
                                                             {[...Array(product.countInStock).keys()].map((x) => (
                                                                 <option key={x + 1} value={x + 1}>
                                                                     {x + 1}
@@ -70,7 +79,7 @@ const SingleProduct = () => {
                                                             ))}
                                                         </select>
                                                     </div>
-                                                    <button className="round-black-btn">Agregar al carrito</button>
+                                                    <button onClick={AddToCartHandler} className="round-black-btn">Agregar al carrito</button>
                                                 </>
                                             ) : null}
                                         </div>

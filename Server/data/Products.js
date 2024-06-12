@@ -109,6 +109,17 @@ const products = [
         rating: 4.5,
         numReviews: 14,
     },
+    {
+        name: "MOTHER ASUS (AM4) A320M-K PRIME",
+        image: "/images/p11.jpg",
+        video: "https://www.youtube.com/watch?v=8VyBceCIMwo",
+        description:
+            "MOTHER ASUS (AM4) A320M-K PRIME con wifi inalámbrico, HDMI, DVI y 8 puertos USB. ",
+        price: 95000,
+        countInStock: 0,
+        rating: 4.5,
+        numReviews: 14,
+    }
 ];
 
 export default products;
