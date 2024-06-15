@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Header from "../components/Header";
 import {Link, useParams, useLocation, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {addToCart} from "./../Redux/Actions/CartActions";
+import {addToCart, removeFromCart} from "./../Redux/Actions/CartActions";
 
 
 const CartScreen = () => {
@@ -28,10 +28,9 @@ const CartScreen = () => {
         navigate("/login?redirect=shipping")
     }
 
-    const removeFromCartHandle = () => {
-        //TODO
-
-    }
+    const removeFromCartHandle = (id) => {
+        dispatch (removeFromCart(id));
+    };
 
 
     return (
@@ -64,8 +63,9 @@ const CartScreen = () => {
                                 {
                                     cartItems.map((item) => (
                                         <div className="cart iterm row">
-                                            <div onClick={() => removeFromCartHandle()}/>
-                                            <div className="remove-button d-flex justify-content-center align-items-center">
+                                            <div onClick={() => removeFromCartHandle(item.product)}
+                                                className="remove-button d-flex justify-content-center align-items-center"
+                                            >
                                                 <i className="fas fa-times"></i>
                                             </div>
                                             <div className="cart-image col-md-3">
