@@ -1,10 +1,17 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from "../Redux/Actions/userActions";
 
 const Header = () => {
+    const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
+    const userLogin = useSelector((state) => state.userLogin);
+    const {userInfo} = userLogin;
+    const logoutHandler = () => {
+        dispatch(logout());
+    };
     return (
         <div>
             {/* Top Header */}
@@ -27,8 +34,10 @@ const Header = () => {
                                         <img alt="logo" src="https://res.cloudinary.com/dkzwt9sfa/image/upload/v1630566824/ecommerce/logo" />
                                     </Link>
                                 </div>
-                                <div className="col-6 d-flex justify-content-end">
-                                    <div className="btn-group">
+                                <div className="col-6 d-flex align-items-center justify-content-end">
+                                    {
+                                        userInfo ? (
+                                            <div className="btn-group">
                                         <button
                                             type="button"
                                             className="name-button dropdown-toggle"
@@ -42,11 +51,36 @@ const Header = () => {
                                         <Link className="dropwdown-item" to="/profile">
                                             Perfil
                                         </Link>
-                                        <Link className="dropwdown-item" to="#">
+                                        <Link className="dropwdown-item" to="#" onClick={logoutHandler}>
                                             Cerrar Sesión
                                         </Link>
                                     </div>
                                 </div>
+                                        )
+                                        : (
+                                            <div className="btn-group">
+                                        <button
+                                            type="button"
+                                            className="name-button dropdown-toggle"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                            <i className="fas fa-user"></i>
+                                        </button>
+                                    <div className="dropdown-menu">
+                                        <Link className="dropwdown-item" to="/login">
+                                            Inicia Sesión
+                                        </Link>
+                                        <Link className="dropwdown-item" to="/register">
+                                            Registrate
+                                        </Link>
+                                    </div>
+                                </div>
+                                        )
+
+                                    }
+                                    
                                 <Link to="/cart" className="cart-mobile-icon">
                                     <i className="fas fa-shopping-bag"></i>
                                     <span className="badge">{cartItems.length}</span>
@@ -93,30 +127,47 @@ const Header = () => {
                                 </button>
                             </form>
                         </div>
-                        <div className="col-md-3 d-flex align-items-center justify-content-end">
-                            <div className="btn-group"  style={{ marginLeft: '600px' }}>
+                        <div className="col-md-3 d-flex justify-content-end">
+                            {
+                                userInfo ?(
+                                    <div className="btn-group"  style={{ marginLeft: '600px' }}>
                                 <button
                                     type="button"
                                     className="name-button dropdown-toggle"
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
                                     aria-expanded="false"
+                                    
                                 >
-                                    Hola, Administrador
+                                    Hola, {userInfo.name}
                                 </button>
                                 <div className="dropdown-menu">
                                     <Link className="dropwdown-item" to="/profile">
                                         Perfil
                                     </Link>
                                     <p></p>
-                                    <Link className="dropwdown-item" to="#">
+                                    <Link className="dropwdown-item" to="#" onClick={logoutHandler}>
                                         Cerrar Sesión
                                     </Link>
                                 </div>
                             </div>
+                                ) :
+                                (
+                                    <>
+                                    <div style={{ marginTop: '30px' }}>
+                                        <Link to="/register"style={{ marginLeft: '450px'}}>
+                                            Registrate
+                                        </Link>
+                                        <Link to="/login"style={{ marginLeft: '50px'}}>
+                                            Login
+                                        </Link>
+                                    </div>
+                                    </>
+                                )
+                            }
                             <Link to="/cart">
-                                <i className="fas fa-shopping-bag" style={{ marginLeft: '10px' }}></i>
-                                <span className="badge" style={{ color: 'black', fontSize: '14px', position: 'absolute', top: '70px', right: '112px' }}>{cartItems.length}</span>
+                                <i className="fas fa-shopping-bag" style={{ marginTop: '30px',marginLeft: '40px' }}></i>
+                                <span className="badge" style={{ color: 'black', fontSize: '14px', position: 'absolute', marginTop:'10px' }}>{cartItems.length}</span>
                             </Link>
                         </div>
                     </div>

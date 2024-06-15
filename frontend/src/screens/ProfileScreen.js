@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header";
 import ProfileTabs from "../components/profileComponents/ProfileTabs";
 import Orders from "../components/profileComponents/Orders";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDetails } from "../Redux/Actions/userActions";
+import moment from 'moment';
+import 'moment/locale/es';
+
+moment.locale('es');
 
 const ProfileScreen = () => {
     window.scrollTo(0, 0);
+    const dispatch = useDispatch();
+    const userLogin = useSelector((state) => state.userLogin);
+    const {userInfo} = userLogin;
+    useEffect(() => {
+        dispatch(getUserDetails("profile"));
+    }, [dispatch, userInfo]);
 
     return (
         <>
@@ -20,10 +32,10 @@ const ProfileScreen = () => {
                                 </div>
                                 <div className="author-card-details col-md-7">
                                     <h5 className="author-card-name mb-2">
-                                        <strong>Administrador</strong>
+                                        <strong>{userInfo.name}</strong>
                                     </h5>
                                     <span className="author-card-position">
-                                        <>Se unió el 15 de Junio de 2023</>
+                                        <>Se unió el {moment(userInfo.createdAt).format('LL')}</>
                                     </span>
                                 </div>
                             </div>
@@ -58,8 +70,8 @@ const ProfileScreen = () => {
                                         aria-controls="v-pills-profile"
                                         aria-selected="false"
                                     >
-                                        Lista de pedidos
-                                        <span className="bade2">3</span>
+                                        Lista de pedidos:
+                                        <span className="bade2"style={{marginLeft: '8px'}} >3</span>
                                     </button>
                                 </div>
                             </div>
