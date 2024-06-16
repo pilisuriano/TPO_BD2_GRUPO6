@@ -25,7 +25,7 @@ const CartScreen = () => {
     }, [dispatch, productId, qty]);
 
     const checkOutHandler = () => {
-        navigate("/login?redirect=shipping")
+        navigate('/login', { state: { redirect: 'shipping' } });
     }
 
     const removeFromCartHandle = (id) => {

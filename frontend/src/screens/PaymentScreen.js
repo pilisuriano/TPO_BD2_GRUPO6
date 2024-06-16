@@ -1,12 +1,26 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, { useState } from "react";
 import Header from "./../components/Header";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { savePaymentMethod } from "../Redux/Actions/CartActions";
 
 const PaymentScreen = () => {
     window.scrollTo(0, 0);
+    const cart = useSelector((state) => state.cart);
+    const { shippingAddress } = cart;
 
-    const subtmitHandler = (e) => {
+    if (!shippingAddress.address) {
+        navigate("/shipping");
+    }
+    const [paymentMethod, setPaymentMethod] = useState("Paypal");
+    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
+    const submitHandler = (e) => {
         e.preventDefault();
+        dispatch(savePaymentMethod(paymentMethod));
+        navigate("/placeorder")
     };
 
     return (
@@ -15,20 +29,18 @@ const PaymentScreen = () => {
             <div className="container d-flex justify-content-center align-items-center">
                 <form
                     className="Login2 col-md-8 col-lg-4 col-11"
-                    onSubmit={subtmitHandler}
+                    onSubmit={submitHandler}
                 >
                     <h6> Seleccionar método de pago</h6>
                     <div className="payment-container">
                         <div className="radio-container">
-                            <input className="form-check-input" type="radio" value="Paypal" />
+                            <input className="form-check-input" type="radio" value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}/>
                             <label className="form-check-label">Paypal o Tarjeta de Crédito</label>
                         </div>
                     </div>
 
                     <button type="submit">
-                        <Link to="/placeorder" className="text-white">
-                            Continuar
-                        </Link>
+                        Continuar
                     </button>
                 </form>
             </div>

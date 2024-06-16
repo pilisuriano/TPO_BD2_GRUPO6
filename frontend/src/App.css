@@ -446,6 +446,10 @@ textarea:focus{
     height: 100px;
     object-fit:contain;
 }
+
+.table{
+    margin-right: '500px';
+}
 .table-bordered {
     background-color: #f3f3f3;
 }

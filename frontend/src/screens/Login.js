@@ -6,7 +6,7 @@ import {useState, useEffect} from "react";
 import {login} from "./../Redux/Actions/userActions";
 import Message from "./../components/LoadingError/Error";
 import Loading from './../components/LoadingError/Loading';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 const Login = () => {
     window.scrollTo(0, 0);
@@ -14,8 +14,9 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
+    const [searchParams] = useSearchParams();
     const dispatch = useDispatch();
-    const redirect = location.search ? location.search.split('=')[1] : '/';
+    const redirect = location.state?.redirect ? `/${location.state.redirect}` : '/';
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(login(email, password));
