@@ -60,4 +60,23 @@ productRoute.post("/:id/review", protect, asyncHandler(async(req,res)=>{
     }
 }));
 
+//POST CREATE PRODUCT
+productRoute.post("/", asyncHandler(async(req,res)=>{
+    const { name, price, image, description, countInStock } = req.body;
+    const product = new Product({
+        name,
+        price,
+        image,
+        description,
+        countInStock
+    });
+    try {
+        const createdProduct = await product.save();
+        res.status(201).json(createdProduct);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}));
+
+
 export default productRoute;

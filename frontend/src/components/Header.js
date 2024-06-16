@@ -63,6 +63,9 @@ const Header = () => {
                                         <Link className="dropwdown-item" to="/profile">
                                             Perfil
                                         </Link>
+                                        <Link className="dropdown-item" to="/createproduct">
+                                                    Crear Producto
+                                        </Link>
                                         <Link className="dropwdown-item" to="#" onClick={logoutHandler}>
                                             Cerrar Sesión
                                         </Link>
@@ -159,6 +162,9 @@ const Header = () => {
                                     <Link className="dropwdown-item" to="/profile">
                                         Perfil
                                     </Link>
+                                    <Link className="dropdown-item" to="/createproduct">
+                                         Crear Producto
+                                     </Link>
                                     <p></p>
                                     <Link className="dropwdown-item" to="#" onClick={logoutHandler}>
                                         Cerrar Sesión
