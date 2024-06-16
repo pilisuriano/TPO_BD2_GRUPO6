@@ -23,6 +23,7 @@ const PlaceOrderScreen = () => {
 
     cart.shippingPrice = addDecimals(3200);
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice)).toFixed(2);
+    const payment = localStorage.getItem('paymentMethod');
 
     const orderCreate = useSelector((state) => state.orderCreate);
     const {order, success, error} = orderCreate;    

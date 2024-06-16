@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const reviewSchema = new mongoose.Schema({
-    nombre: {
+    name: {
         type: String,
         require: true,
     },
@@ -9,7 +9,7 @@ const reviewSchema = new mongoose.Schema({
         type: Number,
         require: true,
     },
-    comentario: {
+    comment: {
         type: String,
         require: true,
     },

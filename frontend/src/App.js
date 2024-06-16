@@ -20,6 +20,7 @@ const App = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<HomeScreen />} exact />
+                <Route path="/search/:keyword" element={<HomeScreen />} exact />
                 <Route path="/products/:id" element={<SingleProduct />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
