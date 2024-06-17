@@ -29,6 +29,12 @@ orderRouter.post("/", protect, asyncHandler(async(req,res)=>{
 
 }));
 
+//USER LOGIN ORDERS
+orderRouter.get("/", protect, asyncHandler(async(req,res)=>{
+    const order = await Order.find({user: req.user._id}).sort({_id:-1});
+    res.json(order);
+}));
+
 //GET ORDER BY ID
 orderRouter.get("/:id", protect, asyncHandler(async(req,res)=>{
     const order = await Order.findById(req.params.id).populate('user','name email');

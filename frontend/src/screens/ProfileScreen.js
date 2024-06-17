@@ -6,15 +6,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserDetails } from "../Redux/Actions/userActions";
 import moment from 'moment';
 import 'moment/locale/es';
+import { listMyOrders } from "../Redux/Actions/OrderActions";
 
 moment.locale('es');
 
 const ProfileScreen = () => {
     window.scrollTo(0, 0);
     const dispatch = useDispatch();
+
     const userLogin = useSelector((state) => state.userLogin);
     const {userInfo} = userLogin;
+    const orderListMy = useSelector((state) => state.orderListMy);
+    const {loading,error,orders} = orderListMy;
+
     useEffect(() => {
+        dispatch(listMyOrders());
         dispatch(getUserDetails("profile"));
     }, [dispatch, userInfo]);
 
@@ -71,7 +77,7 @@ const ProfileScreen = () => {
                                         aria-selected="false"
                                     >
                                         Lista de pedidos:
-                                        <span className="bade2"style={{marginLeft: '8px'}} >3</span>
+                                        <span className="bade2"style={{marginLeft: '8px'}} >{orders? orders.length : 0}</span>
                                     </button>
                                 </div>
                             </div>
@@ -97,7 +103,7 @@ const ProfileScreen = () => {
                             role="tabpanel"
                             aria-labelledby="v-pills-profile-tab"
                         >
-                            <Orders />
+                            <Orders orders={orders} loading={loading} error={error}/>
                         </div>
                     </div>
                 </div>
