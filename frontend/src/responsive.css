@@ -1,3 +1,15 @@
+.btn-green {
+    background-color: #28a745; /* Color verde */
+    color: white; /* Color del texto */
+    border-radius: 20px; /* Bordes redondeados */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Padding para el botón */
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 @media (max-width: 991.98px) {
     .display-none {
         display: none !important;
