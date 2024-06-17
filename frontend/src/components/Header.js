@@ -11,6 +11,7 @@ const Header = () => {
     const { cartItems } = cart;
     const userLogin = useSelector((state) => state.userLogin);
     const {userInfo} = userLogin;
+    const [showCreateButton, setShowCreateButton] = useState(true);
     const logoutHandler = () => {
         dispatch(logout());
     };
@@ -23,7 +24,9 @@ const Header = () => {
             navigate('/');
         }
     };
-
+    const handleCreateButtonClick = () => {
+        setShowCreateButton(false); // Ocultar el botón al hacer clic
+    };
     return (
         <div>
             {/* Top Header */}
@@ -143,6 +146,15 @@ const Header = () => {
                                     Buscar
                                 </button>
                             </form>
+                            <div>
+                            {showCreateButton && (
+                                        <div className="d-flex justify-content-end">
+                                            <Link to="/createproduct" className="btn btn-green mr-2" onClick={handleCreateButtonClick}>
+                                                Crear Producto
+                                            </Link>
+                                        </div>
+                                    )}
+                            </div>
                         </div>
                         <div className="col-md-3 d-flex justify-content-end">
                             {
@@ -162,9 +174,6 @@ const Header = () => {
                                     <Link className="dropwdown-item" to="/profile">
                                         Perfil
                                     </Link>
-                                    <Link className="dropdown-item" to="/createproduct">
-                                         Crear Producto
-                                     </Link>
                                     <p></p>
                                     <Link className="dropwdown-item" to="#" onClick={logoutHandler}>
                                         Cerrar Sesión
