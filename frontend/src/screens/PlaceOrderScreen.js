@@ -91,7 +91,7 @@ const PlaceOrderScreen = () => {
                         <div className="row">
                             <div className="col-md-4 center">
                                 <div className="alert-success order-box">
-                                    <i className="fas fa-max-marker-alt"></i>
+                                    <i className="fas fa-map-marker-alt"></i>
                                 </div>
                             </div>
                             <div className="col-md-8 center">
@@ -137,7 +137,7 @@ const PlaceOrderScreen = () => {
                         }
                         {/* <Message variant="alert-info mt-5">Tu carrito está vacío</Message>*/}
                     {/*total*/}
-                    <div className="col-lg-3 d-flex align-items-end flex-column mt-5 subtotal-order">
+                    <div className="col-lg-3 d-flex align-items-center flex-column mt-5 subtotal-order">
                         <table className="table table-bordered">
                             <tbody>
                                 <tr>
@@ -162,7 +162,7 @@ const PlaceOrderScreen = () => {
                         </table>
                         {
                             cart.cartItems.length === 0 ? null: (
-                                <button type="submit" onClick={placeOrderHandler}>
+                                <button type="submit" className="col-12"onClick={placeOrderHandler}>
                                     Realizar pedido
                                 </button>
                             )

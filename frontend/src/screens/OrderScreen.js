@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {Link, useParams} from "react-router-dom";
 import Header from "./../components/Header";
 import {PayPalButton} from "react-paypal-button-v2";
@@ -8,6 +8,7 @@ import Loading from './../components/LoadingError/Loading';
 import Message from './../components/LoadingError/Error';
 import moment from 'moment';
 import 'moment/locale/es';
+import { payOrder } from '../Redux/Actions/OrderActions';
 
 moment.locale('es');
 
@@ -18,6 +19,8 @@ const OrderScreen = () => {
     const orderId = id;
     const orderDetails = useSelector((state) => state.orderDetails);
     const {order,loading,error} = orderDetails;
+    const [showPaymentForm, setShowPaymentForm] = useState(false);
+    const [paymentResult, setPaymentResult] = useState(null);
 
     if (!loading) {
         const addDecimals = (num) => {
@@ -27,8 +30,21 @@ const OrderScreen = () => {
     }
 
     useEffect(() => {
-        dispatch(getOrderDetails(orderId));
-    }, [dispatch, orderId]);
+        dispatch(getOrderDetails(orderId,paymentResult));
+    }, [dispatch, orderId, paymentResult]);
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        setPaymentResult({
+            id: Math.random().toString(36).substring(7),
+            status: 'Completado',
+            update_time: new Date().toISOString(),
+            payer: {
+                email_address: order.user.email
+            }
+        });
+        dispatch(payOrder(orderId,paymentResult));
+    };
 
     return(
         <>
@@ -182,10 +198,31 @@ const OrderScreen = () => {
                                         </tbody>
                                     </table>
                                     <div className="col-12">
-                                        <button>Pagar</button>
-                                        </div>
+                                        <button disabled={order.isPaid} onClick={() => setShowPaymentForm(true)}>Pagar</button>
+                                        {showPaymentForm && (
+                                            <form onSubmit={submitHandler}>
+                                                <label>
+                                                    Número de tarjeta:
+                                                    <input type="text" name="cardNumber" required disabled={order.isPaid}/>
+                                                </label>
+                                                <label>
+                                                    Fecha de vencimiento:
+                                                    <input type="text" name="expiryDate" pattern="(0[1-9]|1[0-2])\/\d{2}" required disabled={order.isPaid}/>
+                                                </label>
+                                                <label>
+                                                    CVV:
+                                                    <input type="text" name="cvv" pattern="\d{3}" required disabled={order.isPaid}/>
+                                                </label>
+                                                <label>
+                                                    Nombre del titular:
+                                                    <input type="text" name="cardHolderName" required disabled={order.isPaid} />
+                                                </label>
+                                                <input type="submit" value="Submit" disabled={order.isPaid} />
+                                            </form>
+                                        )}
                                     </div>
                                 </div>
+                            </div>
                         </>
                     )
                 }
@@ -197,3 +234,7 @@ const OrderScreen = () => {
 export default OrderScreen;
 
 //<PayPalButton amount={250} />
+/*<div className="col-12">
+<button>Pagar</button>
+</div>
+</div>*/
