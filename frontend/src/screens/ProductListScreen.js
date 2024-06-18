@@ -29,10 +29,14 @@ const ProductListScreen = () => {
         setSelectedProduct(product);
       }
 
-    const handleDelete = async (id) => {
+      const handleDelete = async (id) => {
         try {
-            await axios.delete(`/api/products/${id}`);
-            setProducts(products.filter((product) => product._id !== id));
+            const response = await axios.delete(`/api/products/${id}`);
+    
+            console.log(response.data.message);
+    
+            // Refrescar la lista de productos después de eliminar
+            setProducts(products.filter(product => product.id !== id));
         } catch (error) {
             console.error(error);
         }

@@ -2,25 +2,25 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const UpdateProductForm = ({ product, onUpdate }) => {
-    const [name, setName] = useState(product.name);
-    const [price, setPrice] = useState(product.price);
-    const [description, setDescription] = useState(product.description);
-    const [stock, setStock] = useState(product.stock);
-    const [image, setImage] = useState(product.image);
+    const [name, setName] = useState(product?.name || '');
+    const [price, setPrice] = useState(product?.price || 0);
+    const [description, setDescription] = useState(product?.description || '');
+    const [countInStock, setStock] = useState(product?.countInStock || 0);
+    const [image, setImage] = useState(product?.image || '');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.put(`/api/products/${product.id}`, { name, price, description, stock, image });
-          if (response.status === 200) {
-            onUpdate(response.data);
-          } else {
-            console.error('Update failed with status:', response.status);
-          }
+            const response = await axios.put(`/api/products/${product._id}`, { name, price, description, countInStock, image });
+            if (response.status === 200) {
+                onUpdate(response.data);
+            } else {
+                console.error('Update failed with status:', response.status);
+            }
         } catch (err) {
-          console.error('Update failed with error:', err);
+            console.error('Update failed with error:', err);
         }
-      };
+    };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -55,7 +55,7 @@ const UpdateProductForm = ({ product, onUpdate }) => {
                 <input
                     type="number"
                     className="form-control"
-                    value={stock}
+                    value={countInStock}
                     onChange={(e) => setStock(e.target.value)}
                 />
             </div>

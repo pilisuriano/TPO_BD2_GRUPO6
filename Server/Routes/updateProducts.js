@@ -1,24 +1,27 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import Product from '../models/productModel.js';
+
 const router = express.Router();
 
-router.put('/api/products/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    const { name, price, description, stock, image } = req.body;
+
+    // Verificar si el ID del producto es válido
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).send('No se encontró el producto con el ID proporcionado');
+    }
+
     try {
-        const product = await Product.findById(id);
-        if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
+        const updatedProduct = await Product.findByIdAndUpdate(id, req.body, { new: true });
+
+        if (!updatedProduct) {
+            return res.status(404).send('No se encontró el producto con el ID proporcionado');
         }
-        product.name = name;
-        product.price = price;
-        product.description = description;
-        product.stock = stock;
-        product.image = image;
-        await product.save();
-        res.json(product);
+
+        res.json(updatedProduct);
     } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).send(err.message);
     }
 });
 
