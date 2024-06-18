@@ -105,25 +105,25 @@ productRoute.put('/:id', async (req, res) => {
     }
 });
 
-//DELETE PRODUCT
+// DELETE PRODUCT
 productRoute.delete('/:id', async (req, res) => {
     const { id } = req.params;
 
-    // Verificar si el ID del producto es válido
+    // Verify if the product ID is valid
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).send('No se encontró el producto con el ID proporcionado');
+        return res.status(400).json({ message: 'No product found with the provided ID' });
     }
 
     try {
-        const deletedProduct = await Product.findByIdAndRemove(id);
+        const deletedProduct = await Product.findByIdAndDelete(id);
 
         if (!deletedProduct) {
-            return res.status(404).send('No se encontró el producto con el ID proporcionado');
+            return res.status(404).json({ message: 'No product found with the provided ID' });
         }
 
-        res.json({ message: 'Producto eliminado correctamente' });
+        res.json({ message: 'Product deleted successfully' });
     } catch (err) {
-        res.status(500).send(err.message);
+        res.status(500).json({ message: err.message });
     }
 });
 

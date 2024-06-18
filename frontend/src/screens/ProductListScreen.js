@@ -3,6 +3,7 @@ import axios from 'axios';
 import Pagination from '../components/homeComponents/pagination';
 import Header from '../components/Header';
 import UpdateProductForm from './UpdateProductForm';
+
 const ProductListScreen = () => {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -29,14 +30,10 @@ const ProductListScreen = () => {
         setSelectedProduct(product);
       }
 
-      const handleDelete = async (id) => {
+    const handleDelete = async (id) => {
         try {
-            const response = await axios.delete(`/api/products/${id}`);
-    
-            console.log(response.data.message);
-    
-            // Refrescar la lista de productos después de eliminar
-            setProducts(products.filter(product => product.id !== id));
+            await axios.delete(`/api/products/${id}`);
+            setProducts(products.filter((product) => product._id !== id));
         } catch (error) {
             console.error(error);
         }
@@ -50,7 +47,7 @@ const ProductListScreen = () => {
                     <div style={contentStyle}>
                         <h2>{product.name}</h2>
                         <p>{product.description}</p>
-                        <button onClick={() => handleDelete(product.id)}>Eliminar</button>
+                        <button onClick={() => handleDelete(product._id)}>Eliminar</button>
                         <button onClick={() => handleUpdate(product)}>Actualizar</button>
                     </div>
                     {selectedProduct === product && <UpdateProductForm product={product} />}
