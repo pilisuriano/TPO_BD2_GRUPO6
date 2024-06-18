@@ -7,6 +7,7 @@ import { notFound, errorHandler } from './Middleware/Errors.js';
 import userRouter from './Routes/UserRoutes.js';
 import orderRouter from './Routes/OrderRoutes.js';
 import paymentRoutes from './Routes/paymentRoutes.js';
+import customerRoutes from './Routes/customerRoutes.js';
 
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use("/api/products", productRoute);
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
 app.use('/api/payments', paymentRoutes);
+app.use('/api/customers', customerRoutes);
 
 //ERROR HANDLER
 app.use(notFound);

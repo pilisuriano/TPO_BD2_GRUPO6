@@ -50,6 +50,16 @@ const OrderScreen = () => {
         try {
             const response = await axios.post('/api/payments', paymentResult);
             console.log(response.data);
+            const customerData = {
+                address: order.shippingAddress.address,
+                name: order.user.name,
+                postalCode: order.shippingAddress.postalCode,
+                city: order.shippingAddress.city, 
+                country: order.shippingAddress.country,
+                email: order.user.email
+            };
+            const customerResponse = await axios.post('/api/customers', customerData);
+            console.log(customerResponse.data);
         } catch (error) {
             console.error(error);
         }
