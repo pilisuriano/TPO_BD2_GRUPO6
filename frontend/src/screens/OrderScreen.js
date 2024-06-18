@@ -9,6 +9,7 @@ import Message from './../components/LoadingError/Error';
 import moment from 'moment';
 import 'moment/locale/es';
 import { payOrder } from '../Redux/Actions/OrderActions';
+import axios from 'axios';
 
 moment.locale('es');
 
@@ -33,17 +34,25 @@ const OrderScreen = () => {
         dispatch(getOrderDetails(orderId,paymentResult));
     }, [dispatch, orderId, paymentResult]);
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-        setPaymentResult({
-            id: Math.random().toString(36).substring(7),
+        const paymentResult = {
+            id: Math.floor(Math.random() * 1000000), // Genera un número aleatorio entre 0 y 1000000
             status: 'Completado',
             update_time: new Date().toISOString(),
             payer: {
                 email_address: order.user.email
             }
-        });
-        dispatch(payOrder(orderId,paymentResult));
+        };
+        setPaymentResult(paymentResult);
+        dispatch(payOrder(orderId, paymentResult));
+    
+        try {
+            const response = await axios.post('/api/payments', paymentResult);
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return(
