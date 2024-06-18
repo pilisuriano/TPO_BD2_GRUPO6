@@ -60,6 +60,16 @@ const OrderScreen = () => {
             };
             const customerResponse = await axios.post('/api/customers', customerData);
             console.log(customerResponse.data);
+            // Post to the billing table
+            const billingData = {
+                customerName: order.user.name,
+                invoiceDate: new Date(), 
+                productCount: order.orderItems.length,  
+                customerAddress: order.shippingAddress.address,
+                total: order.totalPrice, 
+            };
+        const billingResponse = await axios.post('/api/billing', billingData);
+        console.log(billingResponse.data);
         } catch (error) {
             console.error(error);
         }

@@ -8,6 +8,7 @@ import userRouter from './Routes/UserRoutes.js';
 import orderRouter from './Routes/OrderRoutes.js';
 import paymentRoutes from './Routes/paymentRoutes.js';
 import customerRoutes from './Routes/customerRoutes.js';
+import billingRoutes from './Routes/billingRoutes.js';
 
 
 dotenv.config();
@@ -22,6 +23,7 @@ app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/customers', customerRoutes);
+app.use('/api/billing', billingRoutes);
 
 //ERROR HANDLER
 app.use(notFound);
