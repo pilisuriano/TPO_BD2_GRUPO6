@@ -11,7 +11,6 @@ const Header = () => {
     const { cartItems } = cart;
     const userLogin = useSelector((state) => state.userLogin);
     const {userInfo} = userLogin;
-    const [showCreateButton, setShowCreateButton] = useState(true);
     const logoutHandler = () => {
         dispatch(logout());
     };
@@ -23,9 +22,6 @@ const Header = () => {
         } else {
             navigate('/');
         }
-    };
-    const handleCreateButtonClick = () => {
-        setShowCreateButton(false); // Ocultar el botón al hacer clic
     };
     return (
         <div>
@@ -146,15 +142,6 @@ const Header = () => {
                                     Buscar
                                 </button>
                             </form>
-                            <div>
-                            {showCreateButton && (
-                                        <div className="d-flex justify-content-end">
-                                            <Link to="/createproduct" className="btn btn-green mr-2" onClick={handleCreateButtonClick}>
-                                                Crear Producto
-                                            </Link>
-                                        </div>
-                                    )}
-                            </div>
                         </div>
                         <div className="col-md-3 d-flex justify-content-end">
                             {

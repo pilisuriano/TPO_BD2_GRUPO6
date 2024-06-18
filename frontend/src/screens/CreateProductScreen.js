@@ -77,6 +77,7 @@ const CreateProductScreen = () => {
                             className="form-control"
                             value={image}
                             onChange={(e) => setImage(e.target.value)}
+                            placeholder="Introduce la URL de la imagen"
                         />
                     </div>
                     <button type="submit" className="btn btn-primary">

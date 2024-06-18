@@ -7,6 +7,8 @@ import { getUserDetails } from "../Redux/Actions/userActions";
 import moment from 'moment';
 import 'moment/locale/es';
 import { listMyOrders } from "../Redux/Actions/OrderActions";
+import ProductListScreen from "./ProductListScreen";
+import { Link } from "react-router-dom";
 
 moment.locale('es');
 
@@ -23,6 +25,10 @@ const ProfileScreen = () => {
         dispatch(listMyOrders());
         dispatch(getUserDetails("profile"));
     }, [dispatch, userInfo]);
+
+    const handleCreateButtonClick = () => {
+        setShowCreateButton(false); // Ocultar el botón al hacer clic
+    };
 
     return (
         <>
@@ -79,6 +85,23 @@ const ProfileScreen = () => {
                                         Lista de pedidos:
                                         <span className="bade2"style={{marginLeft: '8px'}} >{orders? orders.length : 0}</span>
                                     </button>
+                                    {userInfo && userInfo.isAdmin && (
+                                    <button
+                                        className="nav-link d-flex justify-content-between"
+                                        id="v-pills-catalog-tab"
+                                        type="button"
+                                        role="tab"
+                                        aria-controls="v-pills-catalog"
+                                        aria-selected="false"
+                                    >
+                                        <Link to="/productlist">Ver Catálogo</Link>
+                                    </button>
+                                    )}
+                                    {userInfo && userInfo.isAdmin && (
+                                        <Link to="/createproduct" className="nav-link d-flex justify-content-between" onClick={handleCreateButtonClick}>
+                                            Crear Producto
+                                        </Link>
+                                    )}
                                 </div>
                             </div>
                         </div>
